@@ -1,0 +1,54 @@
+<!-- Delete team popup -->
+<div id="#openModal" class="modalDialog delete-team">
+    <div class="content">
+        <span title="Close" class="close" ng-controller="PopupMessageController as popupMessage" ng-click="popupMessage.hidePopupMessage();">X</span>
+        <h2></h2>
+        <p></p>
+        <button class="ok" ng-controller="TeamsListController as teams" ng-click="teams.deleteTeam();">OK</button>
+        <button class="cancel" ng-controller="PopupMessageController as popupMessage" ng-click="popupMessage.hidePopupMessage();">Cancel</button>
+    </div>
+</div>
+
+<div id="wrapper">
+	<div id="page-wrapper" ng-controller="TeamsListController as teamsList">
+		<div class="search" ng-show="teamsList.getTeamsList().length != 0">
+			<label for="searchTeam">Search by team name:</label>
+			<input type="text" ng-model="search.name" class="form-control">
+		</div>
+
+	 	<div id="page_content_inner">
+			<div class="md-card-list-wrapper" id="mailbox">
+				<div class="uk-width-large-8-10 uk-container-center">
+					<div class="md-card-list">
+						<div class="md-card-list-header heading_list" ng-show="teamsList.getTeamsList().length != 0">Teams list</div>
+						<div ng-if="teamsList.getTeamsList().length == 0">
+							<span ng-bind-html="teamsList.showGrayBox('<span>There are no teams.</span>', '<span>Go to \'Add teams\' to add a team.</span>')"></span>
+						</div>
+						<ul>
+							<li ng-repeat="team in teamsList.getTeamsList() | filter:search">
+								<span class="list-entry">
+									<div class="md-card-list-item-avatar-wrapper">
+										<span class="md-card-list-item-avatar md-bg-light-green"> {{ team.nr }} </span>
+									</div>
+									<div class="md-card-list-item-sender">
+										<span> {{ team.name }} </span>
+									</div>
+									<div class="md-card-list-item-subject">
+										<div class="md-card-list-item-sender-small">
+											<span> {{ team.description }} </span>
+										</div>
+										<span> {{ team.managerFirstName + ' ' + team.managerLastName }} </span>
+									</div>
+									<div class="md-card-list-item-subject action">
+										<span ng-click="teamsList.goEditTeam(team.id)">Edit</span>
+										<span ng-click="teamsList.showDeleteTeamPopup(team.id, team.name)">Delete</span>
+									</div>
+								</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

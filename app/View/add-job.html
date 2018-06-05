@@ -1,0 +1,34 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid" id="peoples">
+
+            <h2 class="form-signin-heading">Add job</h2>
+
+            <div ng-controller="AddJobController as addJob">
+                <form class="form-add-people" name="addJobForm">
+                    <label for="inputTitle">Title:</label>
+                    <span style="color:red" ng-show="addJobForm.title.$invalid">
+                      <br /> <span ng-show="addJobForm.title.$error.required">Title is required.</span>
+                    </span>
+                    <input class="form-control"  type="text" name="title" ng-model="addJob.addJobForm.title" required> <br/>
+
+                    <label for="inputDepartment">Department:</label>
+                    <span style="color:red" ng-show="addJobForm.department.$invalid">
+                        <br /> <span ng-show="addJobForm.department.$error.required">Department is required.</span>
+                    </span>
+                    <select class="form-control" name="department" ng-model="addJob.addJobForm.department" required>
+                        <option ng-repeat="department in addJob.getDepartmentsList()" ng-value="{{ department.id }}">{{ department.name }}</option>
+                    </select> <br/>
+
+                    <label for="inputDepartment">Open for hiring:</label>
+                    <select class="form-control" name="open" ng-model="addJob.addJobForm.open">
+                        <option value="1">True</option>
+                        <option value="0">False</option>
+                    </select> <br/>
+
+                    <button class="btn btn-lg btn-primary" ng-click="addJob.submitTheForm()" ng-disabled="addJobForm.$invalid">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

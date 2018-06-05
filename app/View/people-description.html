@@ -1,0 +1,60 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid" id="peoples">
+			<div ng-controller="PeopleDescriptionController as peopleDescription" ng-init="peopleDescription.getPeopleInformation();">
+				<div class="col-lg-12">
+					<div class="people-information-container" ng-show="peopleDescription.getSuccessRequest();">
+						<div class="name">{{ peopleDescription.peopleInformation.firstName + ' ' +  peopleDescription.peopleInformation.lastName }}</div>
+
+						<div class="photo">
+							<img ng-src="{{ peopleDescription.getPeopleImageSrc() + peopleDescription.peopleInformation.photo }}" />
+						</div>
+
+						<ul class="people-profile-tabs">
+							<li>
+								<button class="btn btn-primary" ng-class="{true : 'active', false: ''}[peopleDescription.personalInformations()]" ng-click="peopleDescription.showPersonalInformations();">Personal Informations</button>
+							</li>
+							<li>
+								<button class="btn btn-primary" ng-class="{true : 'active', false: ''}[peopleDescription.employeeInformations()]" ng-click="peopleDescription.showEmployeeInformations();">Employee Informations</button>
+							</li>
+						</ul>
+
+						<ul class="informations" ng-show="peopleDescription.personalInformations();">
+							<li> <strong> {{ peopleDescription.getHobbiesText() }} : </strong> {{ peopleDescription.peopleInformation.hobbies }} </li>
+							<li> <strong> {{ peopleDescription.getMaritalStatusText() }} : </strong> {{ peopleDescription.peopleInformation.maritalStatus }} </li>
+							<li> <strong> {{ peopleDescription.getEducationText() }} : </strong> {{ peopleDescription.peopleInformation.education }} </li>
+							<li> <strong> {{ peopleDescription.getBloodGroupText() }} : </strong> {{ peopleDescription.peopleInformation.bloodGroup }} </li>
+							<li> <strong> {{ peopleDescription.getAlternateEmailText() }} : </strong> {{ peopleDescription.peopleInformation.alternateEmail }} </li>
+							<li> <strong> {{ peopleDescription.getPartnerBirthdayText() }} : </strong> {{ peopleDescription.peopleInformation.partnerBirthday }} </li>
+							<li> <strong> {{ peopleDescription.getMaidenNameText() }} : </strong> {{ peopleDescription.peopleInformation.maidenName }} </li>
+							<li> <strong> {{ peopleDescription.getPartnerText() }} : </strong> {{ peopleDescription.peopleInformation.partner }} </li>
+							<li> <strong> {{ peopleDescription.getGenderText() }} : </strong> {{ peopleDescription.peopleInformation.gender }} </li>
+							<li> <strong> {{ peopleDescription.getEmailText() }} : </strong> {{ peopleDescription.peopleInformation.email }} </li>
+							<li> <strong> {{ peopleDescription.getAddressText() }} : </strong> {{ peopleDescription.peopleInformation.address }} </li>
+							<li> <strong> {{ peopleDescription.getBirthdayText() }} : </strong> {{ peopleDescription.peopleInformation.birthday }} </li>
+							<li> <strong> {{ peopleDescription.getTelephoneText() }} : </strong> {{ peopleDescription.peopleInformation.telephone }} </li>
+						</ul>
+
+						<ul class="informations" ng-show="peopleDescription.employeeInformations();">
+							<li> <strong> {{ peopleDescription.getNicknameText() }} : </strong> {{ peopleDescription.peopleInformation.nickname }} </li>
+							<li> <strong> {{ peopleDescription.getBrandText() }} : </strong> {{ peopleDescription.peopleInformation.brand }} </li>
+							<li> <strong> {{ peopleDescription.getCountryText() }} : </strong> {{ peopleDescription.peopleInformation.country }} </li>
+							<li> <strong> {{ peopleDescription.getDepartmentText() }} : </strong> {{ peopleDescription.peopleInformation.departmentAvailability == 'available' ? peopleDescription.peopleInformation.department : peopleDescription.strings.departmentNotAvailable }} </li>
+							<li> <strong> {{ peopleDescription.getJobTitleText() }} : </strong> {{ peopleDescription.peopleInformation.jobAvailability == 'available' ? peopleDescription.peopleInformation.jobTitle : peopleDescription.strings.noJobAvailable }}
+							</li>
+							<li> <strong> {{ peopleDescription.getLocationText() }} : </strong> {{ peopleDescription.peopleInformation.location }} </li>
+							<li> <strong> {{ peopleDescription.getWorkTimeText() }} : </strong> {{ peopleDescription.peopleInformation.workTime }} </li>
+							<li> <strong> {{ peopleDescription.getMentorText() }} : </strong> {{ peopleDescription.peopleInformation.mentorFirstName + ' ' +  peopleDescription.peopleInformation.mentorLastName  }} </li>
+							<li> <strong> {{ peopleDescription.getWorkPlaceText() }} : </strong> {{ peopleDescription.peopleInformation.workPlace }} </li>
+							<li> <strong> {{ peopleDescription.getTeamText() }} : </strong> {{ peopleDescription.peopleInformation.team }} </li>
+							<li> <strong> {{ peopleDescription.getUsernameText() }} : </strong> {{ peopleDescription.peopleInformation.username }} </li>
+							<li> <strong> {{ peopleDescription.getJoinDateText() }} : </strong> {{ peopleDescription.peopleInformation.joinDate }} </li>
+							<li> <strong> {{ peopleDescription.getTimeInThisOrganisationText() }} : </strong> {{ peopleDescription.getTotalTimeInCurrentOrganisation(peopleDescription.peopleInformation.joinDate) }} </li>
+							<li> <strong> {{ peopleDescription.getPeopleCategoryText() }} : </strong> {{ peopleDescription.peopleInformation.category }} </li>
+						</ul>
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>

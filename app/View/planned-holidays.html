@@ -1,0 +1,29 @@
+<div id="wrapper">
+	<div id="page-wrapper" ng-controller="PlannedHolidaysController as plannedHolidays">
+		<div ng-if="plannedHolidays.getPlannedHolidaysList().length === 0">
+			<span ng-bind-html="plannedHolidays.showGrayBox('<span>You don\'t have planned holidays.</span>')"></span>
+		</div>
+		<table data-toggle="table"
+					 class="default-table center"
+					 ng-show="plannedHolidays.getPlannedHolidaysList().length !== 0">
+		    <thead>
+			    <tr>
+			        <th>Nr.</th>
+			        <th>Days</th>
+			        <th>Start date</th>
+			        <th>End date</th>
+			        <th>Status</th>
+			    </tr>
+		    </thead>
+		    <tbody>
+			    <tr ng-repeat="holiday in plannedHolidays.getPlannedHolidaysList()">
+			    		<td class="column-1">{{ holiday.nr }}</td>
+			        <td class="column-2">{{ holiday.days }}</td>
+			        <td class="column-2">{{ holiday.startDate }}</td>
+			        <td class="column-2">{{ holiday.endDate }}</td>
+			        <td class="column-2">{{ holiday.status }}</td>
+			    </tr>
+		    </tbody>
+		</table>
+	</div>
+</div>

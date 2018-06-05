@@ -1,0 +1,20 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid" id="documents">
+
+            <h2 class="form-signin-heading">Edit blog</h2>
+
+            <div ng-controller="AddBlogArticleController as addBlog" ng-init="addBlog.getBlogInformation()">
+                <form class="form-add-people">
+                    <label for="inputName">Title:</label>
+                    <input class="form-control" type="text" name="Title" ng-model="addBlog.addBlogArticleForm.title"> <br/>
+
+                    <label for="inputContent">Content:</label>
+                    <textarea class="form-control" rows="20" cols="100" name="Content" ng-model="addBlog.addBlogArticleForm.content"></textarea>
+
+                    <button class="btn btn-lg btn-primary" ng-click="addBlog.submitTheForm()">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

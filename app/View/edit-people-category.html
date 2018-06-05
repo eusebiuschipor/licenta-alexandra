@@ -1,0 +1,20 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid" id="peoples">
+            
+            <h2 class="form-signin-heading">Edit people category</h2>
+
+            <div ng-controller="AddPeopleCategoryController as editPeopleCategory" ng-init="editPeopleCategory.getPeopleCategoryInformation()">
+                <form class="form-add-people">
+                    <label for="inputTitle">Title:</label> 			
+                    <input class="form-control"  type="text" name="Title" ng-model="editPeopleCategory.addPeopleCategoryForm.title"> <br/>
+
+                    <label for="inputDepartment">Description:</label>    
+                    <input class="form-control"  type="text" name="Title" ng-model="editPeopleCategory.addPeopleCategoryForm.description"> <br/>
+
+                    <button class="btn btn-lg btn-primary" ng-click="editPeopleCategory.submitTheForm()">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

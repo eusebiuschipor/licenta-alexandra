@@ -1,0 +1,19 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid" id="peoples">
+
+            <h2 class="form-signin-heading">Food menu currency</h2>
+
+            <div ng-controller="CurrencyFoodMenuController as currencyFoodMenu" ng-init="currencyFoodMenu.getFoodMenuCurrency()">
+                <form class="form-add-people">
+                  <label for="inputCurrency">Currency food menu:</label>
+                  <select class="form-control"  name="Currency" ng-model="currencyFoodMenu.currency.id">
+                      <option ng-repeat="currency in currencyFoodMenu.currencies" ng-value="{{ currency.id }}" ng-selected="currencyFoodMenu.currency.id == currency.id">{{ currency.html }}</option>
+                  </select> <br/>
+
+                  <button class="btn btn-lg btn-primary" ng-click="currencyFoodMenu.changeFoodMenuCurrency()">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

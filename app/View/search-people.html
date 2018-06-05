@@ -1,0 +1,47 @@
+<table>
+    			<tr>
+    				<td>
+    					<label for="country">Country:</label> 
+    				</td>
+    				<td>
+    					<select class="form-control" name="Country" ng-model="search.country">
+					 		<option value="">All</option>
+				            <option ng-repeat="country in peoples.getAllCountries()" ng-value="{{ country.id }}">{{ country.name }}</option>
+			        	</select>
+    				</td>
+    				<td>
+    					<label for="department">Department:</label> 
+    				</td>
+    				<td>
+    					<select class="form-control" name="Department" ng-model="search.department">
+					 		<option value="">All</option>
+				            <option ng-repeat="department in peoples.getAllDepartments()" ng-value="{{ department.id }}">{{ department.name }}</option>
+				        </select>
+    				</td>
+    				<td>
+    					<label for="country">Brand:</label> 
+    				</td>
+    				<td>
+    					<select class="form-control" name="Brand" ng-model="search.brand">
+					 		<option value="">All</option>
+				            <option ng-repeat="brand in peoples.getAllBrands()" ng-value="{{ brand.id }}">{{ brand.name }}</option>
+				        </select>
+    				</td>
+    			</tr>
+    			<tr>
+    				<td>
+    					<label for="name">First Name:</label>
+    				</td>
+    				<td>
+    					<input type="text" ng-model="search.firstName" class="form-control">
+    				</td>
+    				<td>
+    					<label for="name">Last Name:</label>
+    				</td>
+    				<td>
+    					<input type="text" ng-model="search.lastName" class="form-control">
+    				</td>
+    				<td></td>
+    				<td></td>
+    			</tr>
+    		</table>

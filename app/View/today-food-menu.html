@@ -1,0 +1,62 @@
+<!-- <div id="page-wrapper">
+  <div class="container-fluid">
+    <div ng-controller="TodayFoodMenuController as todayFoodMenu" ng-init="todayFoodMenu.getTodayFoodMenu();">
+      <div class="col-lg-12">
+        <h1>Today food menu:</h1>
+        <ul>
+          <li ng-repeat="menu in todayFoodMenu.getMenuList()"> {{ menu.menu }} - {{ menu.price }} <span data-ng-bind-html="todayFoodMenu.currencyHtml"></span> </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- Delete job popup -->
+<div id="#openModal" class="modalDialog delete-food-menu">
+    <div class="content">
+        <span title="Close" class="close" ng-controller="PopupMessageController as popupMessage" ng-click="popupMessage.hidePopupMessage();">X</span>
+        <h2></h2>
+        <p></p>
+        <button class="ok" ng-controller="TodayFoodMenuController as todayFoodMenu" ng-click="todayFoodMenu.deleteFoodMenu();">OK</button>
+        <button class="cancel" ng-controller="PopupMessageController as popupMessage" ng-click="popupMessage.hidePopupMessage();">Cancel</button>
+    </div>
+</div>
+
+<div id="wrapper">
+	<div id="page-wrapper" ng-controller="TodayFoodMenuController as todayFoodMenu" ng-init="todayFoodMenu.getTodayFoodMenu();">
+		<div id="page_content_inner">
+			<div class="md-card-list-wrapper" id="mailbox">
+				<div class="uk-width-large-8-10 uk-container-center">
+					<div class="md-card-list">
+						<div class="md-card-list-header heading_list" ng-show="todayFoodMenu.getMenuList() != 0">Today food menu:</div>
+						<div ng-if="todayFoodMenu.getMenuList().length == 0">
+					         <span ng-bind-html="todayFoodMenu.showGrayBox('<span>There are no food menus for today.</span>', '<span>Go to \'Add food menu\' to add a menu.</span>')"></span>
+						</div>
+						<ul>
+							<li ng-repeat="menu in todayFoodMenu.getMenuList()">
+                  <span class="list-entry">
+                    <div class="md-card-list-item-avatar-wrapper">
+                      <span class="md-card-list-item-avatar md-bg-light-green"> {{ menu.count }} </span>
+                    </div>
+                    <div class="md-card-list-item-sender">
+                      <span> {{ menu.menu }} </span>
+                    </div>
+                    <div class="md-card-list-item-subject">
+                      <div class="md-card-list-item-sender-small">
+                        <span> {{ menu.price }} </span>
+                      </div>
+                      <span> {{ menu.price }} <span data-ng-bind-html="todayFoodMenu.currencyHtml"></span> </span>
+                    </div>
+                    <div class="md-card-list-item-subject action" ng-show="todayFoodMenu.isLoggedInAsOrganization() === 'true'">
+                      <span ng-click="todayFoodMenu.goEditFoodMenu(menu.id)">Edit</span>
+                      <span ng-click="todayFoodMenu.showDeleteFoodMenuPopup(menu.id, menu.menu)">Delete</span>
+                    </div>
+                  </span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,54 @@
+<!-- Delete work time popup -->
+<div id="#openModal" class="modalDialog delete-work-time">
+    <div class="content">
+        <span title="Close" class="close" ng-controller="PopupMessageController as popupMessage" ng-click="popupMessage.hidePopupMessage();">X</span>
+        <h2></h2>
+        <p></p>
+        <button class="ok" ng-controller="WorkTimesListController as workTimes" ng-click="workTimes.deleteWorkTime();">OK</button>
+        <button class="cancel" ng-controller="PopupMessageController as popupMessage" ng-click="popupMessage.hidePopupMessage();">Cancel</button>
+    </div>
+</div>
+
+<div id="wrapper">
+	<div id="page-wrapper" ng-controller="WorkTimesListController as workTimesList">
+		<div class="search" ng-show="workTimesList.getWorkTimesList().length != 0">
+			<label for="searchLocation">Search by work time name:</label>
+			<input type="text" ng-model="search.name" class="form-control">
+		</div>
+
+	 	<div id="page_content_inner">
+			<div class="md-card-list-wrapper" id="mailbox">
+				<div class="uk-width-large-8-10 uk-container-center">
+					<div class="md-card-list">
+						<div class="md-card-list-header heading_list" ng-show="WorkTimesList.getWorkTimesList().length != 0">Work Times list</div>
+						<div ng-if="workTimesList.getWorkTimesList().length == 0">
+							<span ng-bind-html="workTimesList.showGrayBox('<span>There are no work times.</span>', '<span>Go to \'Add work times\' to add a location.</span>')"></span>
+						</div>
+						<ul>
+							<li ng-repeat="workTime in workTimesList.getWorkTimesList() | filter:search">
+								<span class="list-entry">
+									<div class="md-card-list-item-avatar-wrapper">
+										<span class="md-card-list-item-avatar md-bg-light-green"> {{ workTime.nr }} </span>
+									</div>
+									<div class="md-card-list-item-sender">
+										<span> {{ workTime.name }} </span>
+									</div>
+									<div class="md-card-list-item-subject">
+										<div class="md-card-list-item-sender-small">
+											<!-- <span> {{ team.description }} </span> -->
+										</div>
+										<!-- <span> {{ team.managerFirstName + ' ' + team.managerLastName }} </span> -->
+									</div>
+									<div class="md-card-list-item-subject action">
+										<span ng-click="workTimesList.goEditWorkTime(workTime.id)">Edit</span>
+										<span ng-click="workTimesList.showDeleteWorkTimePopup(workTime.id, workTime.name)">Delete</span>
+									</div>
+								</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

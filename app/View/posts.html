@@ -1,0 +1,81 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            
+            <h2 class="form-signin-heading">Posts</h2>
+
+            <div ng-controller="AddPostController as addPost" ng-show="addPost.isLoggedInAsOrganization() === 'false'">
+                <form class="form-add-people" name="addPostForm">
+                    <input class="form-control" type="textarea" name="content" ng-model="addPost.addPostForm.content"> <br/>
+
+                    <input class="form-control" type="file" file-model="addPost.addPostForm.file" />
+
+                    <button class="btn btn-lg btn-primary" ng-click="addPost.submitTheForm()">Submit</button>
+                </form>
+            </div>
+
+            <div class="posts" id="page_content_inner" ng-controller="PostsListController as postsList" ng-show="postsLoaded"> 
+                <div class="md-card-list-wrapper" id="mailbox">
+                    <div class="uk-width-large-8-10 uk-container-center">
+                        <div class="md-card-list posts-list">
+                            <div ng-if="postsList.getPostsList().length == 0 && postsList.isLoggedInAsOrganization() === 'false'">
+                                <span ng-bind-html="postsList.showGrayBox('<span>There are no posts.</span>', '<span>Be the first to share something.</span>')"></span>
+                            </div>
+                            <div ng-if="postsList.getPostsList().length == 0 && postsList.isLoggedInAsOrganization() === 'true'">
+                                <span ng-bind-html="postsList.showGrayBox('<span>There are no posts.</span>')"></span>
+                            </div>
+                            <ul>
+                                <li ng-repeat="post in postsList.getPostsList() | filter:search">
+                                    <a class="pointer delete" ng-click="postsList.deletePost(post.id)" ng-if="post.authorId == peopleId">
+                                        Delete
+                                    </a>
+                                    <a class="pointer edit" href="#/edit-post/{{ post.id }}" ng-if="post.authorId == peopleId">
+                                        Edit
+                                    </a>
+                                    <div class="post-title">
+                                        <a ng-href="#/people-description/{{ post.authorId }}">
+                                            <div class="post-image-container">
+                                                <img ng-src="{{ authorImageSrc + post.authorPhoto }}" class="news-feed-people-photo" />
+                                            </div>
+                                        </a>
+                                        <div class="post-title-container">
+                                            <a ng-href="#/people-description/{{ post.authorId }}" class="author"> 
+                                                <strong> {{ post.authorFirstName + ' ' + post.authorLastName }} </strong> 
+                                            </a> 
+                                            posted on <span class="post-date"> {{ post.date }} </span>
+                                        </div>
+                                    </div>
+                                    <div class="attachement-container {{ post.displayContent }}">
+                                        Attachement: <a ng-href="{{ postImageSrc + post.file }}" download="{{ post.file }}"> <strong> {{ post.file }} </strong> </a>
+                                    </div>
+                                    <a ng-href="#/post/{{ post.id }}">
+                                        <div class="post-container hover-effect">
+                                            <div class="content">
+                                                <span ng-if="post.haveImage" class="image">
+                                                    <img ng-src="{{ postImageSrc + post.file }}" class="post-description-image" />
+                                                </span>
+                                                {{ post.content }}
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="like-dislike">
+                                        <span ng-if="!post.likedByThisUser">
+                                            <a class="pointer like" ng-click="postsList.like(post.id);">Like</a>
+                                        </span>
+                                        <span ng-if="post.likedByThisUser">
+                                            <a class="pointer like liked" ng-click="postsList.unlike(post.id);">Like</a>
+                                        </span>
+                                        <!-- <a class="pointer dislike" ng-click="postsList.dislike(post.id);">Dislike</a> -->
+                                        <a class="pointer" ng-click="postsList.getPeopleWhoLikedThisPost(post.id);">
+                                            <span>{{ post.likesNumber }} likes</span>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

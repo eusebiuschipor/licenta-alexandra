@@ -1,0 +1,39 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid" id="peoples">
+            
+            <h2 class="form-signin-heading">Add payroll</h2>
+
+            <div ng-controller="AddPayrollController as addPayroll">
+                <form class="form-add-people">
+                    <label for="inputEmployee">Employee:</label>      
+                    <select class="form-control" name="Employee" ng-model="addPayroll.addPayrollForm.employee">
+                        <option ng-repeat="employee in addPayroll.getAllEmployees()" ng-value="{{ employee.id }}">{{ employee.firstName + ' ' + employee.lastName }}</option>
+                    </select> <br/> 
+
+                    <label for="inputMonth">Month:</label>
+                    <select class="form-control" name="Month" ng-model="addPayroll.addPayrollForm.month">
+                        <option ng-value="{{ addPayroll.getCurrentMonth() != 0 ? addPayroll.getCurrentMonth() - 1 : 12 }}">{{ addPayroll.getCurrentMonth() != 0 ? addPayroll.getCurrentMonth() - 1 : 0 }}</option>
+                        <option ng-value="{{ addPayroll.getCurrentMonth() }}">{{ addPayroll.getCurrentMonth() }}</option>
+                        <option ng-value="{{ addPayroll.getCurrentMonth() != 12 ? addPayroll.getCurrentMonth() + 1 : 0 }}">{{ addPayroll.getCurrentMonth() != 12 ? addPayroll.getCurrentMonth() + 1 : 0 }}</option>
+                    </select> 
+
+                    <label for="inputMonth">Year:</label>
+                    <select class="form-control" name="Year" ng-model="addPayroll.addPayrollForm.year">
+                        <option ng-value="{{ addPayroll.getCurrentYear() - 1 }}">{{ addPayroll.getCurrentYear() - 1}}</option>
+                        <option ng-value="{{ addPayroll.getCurrentYear() }}">{{ addPayroll.getCurrentYear() }}</option>
+                        <option ng-value="{{ addPayroll.getCurrentYear() + 1 }}">{{ addPayroll.getCurrentYear() + 1 }}</option>
+                    </select> 
+
+                    <label for="inputWorkedDays">Worked days:</label> 
+                    <input class="form-control" name="workedDays" ng-model="addPayroll.addPayrollForm.workedDays"><br>
+
+                    <label for="inputTotaDays">Total days:</label> 
+                    <input class="form-control" name="totalDays" ng-model="addPayroll.addPayrollForm.totalDays"><br>
+
+                    <button class="btn btn-lg btn-primary" ng-click="addPayroll.submitTheForm()">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

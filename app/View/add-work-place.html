@@ -1,0 +1,26 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid" id="work-place">
+
+            <h2 class="form-signin-heading">Add work place</h2>
+
+            <div ng-controller="AddWorkPlaceController as addWorkPlace">
+                <form class="form-add-people">
+                    <label for="inputInterval">Name:</label>
+                    <span style="color:red" ng-show="addWorkPlaceForm.name.$invalid">
+                      <br /> <span ng-show="addWorkPlaceForm.name.$error.required">The name is required.</span>
+                    </span>
+                    <input class="form-control" type="text" name="name" ng-model="addWorkPlace.addWorkPlaceForm.name" required> <br/>
+
+                    <label for="inputAddress">Address:</label>
+                    <span style="color:red" ng-show="addWorkPlaceForm.address.$invalid">
+                        <br /> <span ng-show="addWorkPlaceForm.name.$error.required">The address is required.</span>
+                    </span>
+                    <input class="form-control" type="text" name="address" ng-model="addWorkPlace.addWorkPlaceForm.address" required> <br/>
+
+                    <button class="btn btn-lg btn-primary" ng-click="addWorkPlace.submitTheForm()">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

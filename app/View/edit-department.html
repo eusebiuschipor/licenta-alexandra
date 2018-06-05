@@ -1,0 +1,17 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid" id="peoples">
+            
+            <h2 class="form-signin-heading">Edit department</h2>
+            
+            <div ng-controller="AddDepartmentController as addDepartment" ng-init="addDepartment.getDepartmentInformation()">
+                <form class="form-add-people">
+                    <label for="inputName">Name:</label>          
+                    <input class="form-control" type="text" name="Name" ng-model="addDepartment.addDepartmentForm.name"> <br/>
+
+                    <button class="btn btn-lg btn-primary" ng-click="addDepartment.submitTheForm()">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

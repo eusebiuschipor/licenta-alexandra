@@ -1,0 +1,30 @@
+<div id="wrapper">
+	<div id="page-wrapper" ng-controller="SettingsController as settings">
+	 	<div id="page_content_inner"> 
+        	<div class="md-card-list-wrapper" id="mailbox">
+            	<div class="uk-width-large-8-10 uk-container-center">
+                	<div class="md-card-list">
+                    	<div class="md-card-list-header heading_list">Settings</div>
+                    	<ul>
+                        	<li>
+                            	<span class="md-card-list-item-date"> Account type </span>
+	                            <div class="md-card-list-item-avatar-wrapper">
+	                                <span class="md-card-list-item-avatar md-bg-light-green"> AT </span>
+	                            </div>
+	                            <div class="md-card-list-item-sender">
+	                                <span> {{ settings.getAccountType() }} </span>
+	                            </div>
+	                            <div class="md-card-list-item-subject">
+	                                <div class="md-card-list-item-sender-small">
+	                                    <span> </span>
+	                                </div>
+	                                <span> </span>
+	                            </div>
+                        	</li>
+                    	</ul>
+                	</div>
+            	</div>
+        	</div>
+     	</div>
+	</div>
+</div>

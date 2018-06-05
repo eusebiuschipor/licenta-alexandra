@@ -1,0 +1,19 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid" id="countries">
+
+            <h2 class="form-signin-heading">Add country</h2>
+
+            <div ng-controller="AddCountryController as addCountry">
+                <form class="form-add-people">
+                    <label for="inputCountry">Country:</label>
+                    <select class="form-control" name="country" ng-model="addCountry.addCountryForm.countryId">
+                      <option ng-repeat="country in addCountry.getAvailableCountries()" ng-value="{{ country.id }}">{{ country.name }}</option>
+                    </select> <br/>
+
+                    <button class="btn btn-lg btn-primary" ng-click="addCountry.submitTheForm()">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

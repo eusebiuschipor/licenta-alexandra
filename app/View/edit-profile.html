@@ -1,0 +1,94 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid" id="peoples">
+            
+            <h2 class="form-signin-heading">Edit people</h2>
+
+            <div ng-controller="AddPeopleController as addPeople" ng-init="addPeople.getEditPeopleInformation()">
+                <form class="form-add-people" name="addPeopleForm">
+                    <label for="inputHobbies">Hobbies:</label> 
+                    <input class="form-control" name="hobbies" ng-model="addPeople.addPeopleForm.hobbies"><br>
+
+                    <label for="inputMaritalStatus">Marital Status:</label>      
+                    <select class="form-control" name="MaritalStatus" ng-model="addPeople.addPeopleForm.maritalStatus">
+                        <option ng-repeat="maritalStatus in addPeople.getMaritalStatus()" ng-value="{{ maritalStatus.id }}" ng-selected="addPeople.addPeopleForm.maritalStatus == maritalStatus.id">{{ maritalStatus.name }}</option>
+                    </select> <br/> 
+
+                    <label for="inputBirthday">Birthday:</label> <br/>
+
+                    <label for="inputYear">Year:</label>
+                    <select class="birthday-field" name="Year" ng-model="addPeople.addPeopleForm.birthdayYear">
+                        <option ng-repeat="years in addPeople.getYears()" ng-value="{{ years }}" ng-selected="addPeople.addPeopleForm.birthdayYear == years">{{ years }}</option>
+                    </select> 
+
+                    <label for="inputMonth">Month:</label>
+                    <select class="birthday-field" name="Month" ng-model="addPeople.addPeopleForm.birthdayMonth">
+                        <option ng-repeat="months in addPeople.getMonths()" ng-value="{{ months }}" ng-selected="addPeople.addPeopleForm.birthdayMonth == months">{{ months }}</option>
+                    </select> 
+
+                    <label for="inputDay">Day:</label>
+                    <select class="birthday-field" name="Day" ng-model="addPeople.addPeopleForm.birthdayDay">
+                        <option ng-repeat="days in addPeople.getDays()" ng-value="{{ days }}" ng-selected="addPeople.addPeopleForm.birthdayDay == days">{{ days }}</option>
+                    </select> <br/>
+
+                    <label for="inputTelephone">Telephone:</label> 
+                    <input class="form-control" name="telephone" ng-model="addPeople.addPeopleForm.telephone"><br>
+
+                    <label for="inputEducation">Education:</label> 
+                    <input class="form-control" name="education" ng-model="addPeople.addPeopleForm.education"><br>
+
+                    <label for="inputAddress">Address:</label> 
+                    <input class="form-control" name="address" ng-model="addPeople.addPeopleForm.address"><br>
+
+                    <label for="inputGender">Gender:</label>
+                    <select class="form-control" name="Gender" ng-model="addPeople.addPeopleForm.gender">
+                        <option value="1" ng-selected="addPeople.addPeopleForm.gender == '1'">male</option>
+                        <option value="2" ng-selected="addPeople.addPeopleForm.gender == '2'">female</option>
+                    </select> <br/>
+
+                    <label for="inputPartnerName">Partner name:</label> 
+                    <input class="form-control" name="PartnerName" ng-model="addPeople.addPeopleForm.partner"><br>
+
+                    <label for="inputPartnerBirthday">Partner Birthday:</label> <br/>
+
+                    <label for="inputYear">Year:</label>
+                    <select class="birthday-field" name="Year" ng-model="addPeople.addPeopleForm.birthdayPartnerYear">
+                        <option ng-repeat="years in addPeople.getYears()" ng-value="{{ years }}" ng-selected="addPeople.addPeopleForm.partnerBirthdayYear == years">{{ years }}</option>
+                    </select> 
+
+                    <label for="inputMonth">Month:</label>
+                    <select class="birthday-field" name="Month" ng-model="addPeople.addPeopleForm.birthdayPartnerMonth">
+                        <option ng-repeat="months in addPeople.getMonths()" ng-value="{{ months }}" ng-selected="addPeople.addPeopleForm.partnerBirthdayMonth == months">{{ months }}</option>
+                    </select> 
+
+                    <label for="inputDay">Day:</label>
+                    <select class="birthday-field" name="Day" ng-model="addPeople.addPeopleForm.birthdayPartnerDay">
+                        <option ng-repeat="days in addPeople.getDays()" ng-value="{{ days }}" ng-selected="addPeople.addPeopleForm.partnerBirthdayDay == days">{{ days }}</option>
+                    </select> <br/>
+
+                    <label for="inputMaidenName">Maiden name:</label> 
+                    <input class="form-control" name="MaidenName" ng-model="addPeople.addPeopleForm.maidenName"><br>
+
+                    <label for="inputBloodGroup">Blood Group:</label>
+                    <select class="form-control" name="BloodGroup" ng-model="addPeople.addPeopleForm.bloodGroup">
+                        <option value="1" ng-selected="addPeople.addPeopleForm.bloodGroup == 'A'">A</option>
+                        <option value="2" ng-selected="addPeople.addPeopleForm.bloodGroup == 'B'">B</option>
+                        <option value="3" ng-selected="addPeople.addPeopleForm.bloodGroup == 'C'">C</option>
+                        <option value="4" ng-selected="addPeople.addPeopleForm.bloodGroup == 'D'">D</option>
+                    </select> <br/>
+
+                    <label for="inputAlternateEmail">Alternate Email:</label>
+                    <span style="color:red" ng-show="addPeopleForm.email.$invalid">
+                        <span ng-show="addPeopleForm.alternateEmail.$error.email">Invalid email address.</span>
+                    </span>
+                    <input class="form-control" name="alternateEmail" type="email" ng-model="addPeople.addPeopleForm.alternateEmail"><br>
+
+                    <label for="inputUsername">Photo:</label>
+                    <input class="form-control" type="file" file-model="addPeople.addPeopleForm.photo"/>
+
+                    <button class="btn btn-lg btn-primary" ng-click="addPeople.submitTheForm(true)" ng-disabled="addPeopleForm.$invalid">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

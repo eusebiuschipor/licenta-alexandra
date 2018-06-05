@@ -1,0 +1,32 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid">
+        	<h2 class="form-signin-heading">Edit post</h2>
+
+			<div ng-controller="AddPostController as addPost" ng-init="addPost.getPostInformation();">
+				<form class="form-add-people" name="addPostForm">
+                    <input class="form-control" type="textarea" name="content" ng-model="addPost.addPostForm.content"> <br/>
+
+                    <span ng-if="haveAttachement">
+						Attachment: 
+						<a href="{{ postImageSrc + postFile }}" download="{{ postFile }}"> 
+							<strong> {{ postFile}} </strong> 
+						</a>
+						<a class="pointer delete-image-and-attachement" ng-click="addPost.deleteImageAndAttachement();">	Delete Attachement
+						</a>
+					</span>
+					<span ng-if="haveImage">
+						<img ng-src="{{ postImageSrc + postFile }}" class="post-description-image" />
+						<a class="pointer delete-image-and-attachement" ng-click="addPost.deleteImageAndAttachement();">
+							Delete Image
+						</a>
+					</span>
+
+                    <input class="form-control file-input" type="file" file-model="addPost.addPostForm.file" />
+
+                    <button class="btn btn-lg btn-primary" ng-click="addPost.submitTheForm()">Submit</button>
+                </form>
+			</div>
+        </div>
+    </div>
+</div>

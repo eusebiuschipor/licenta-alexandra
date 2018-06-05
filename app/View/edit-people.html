@@ -1,0 +1,213 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid" id="peoples" ng-controller="AddPeopleController as addPeople">
+
+            <h2 class="form-signin-heading" ng-show="addPeople.isLoggedInAsOrganization == 'true'">Edit people</h2>
+            <h2 class="form-signin-heading" ng-show="addPeople.isLoggedInAsOrganization != 'true'">Edit personal informations</h2>
+
+            <div ng-init="addPeople.getEditPeopleInformation()">
+                <form class="form-add-people" name="addPeopleForm">
+                    <span ng-show="addPeople.isLoggedInAsOrganization == 'true'">
+                      <label for="inputFirstName">First Name:</label>
+                      <span style="color:red" ng-show="addPeopleForm.firstName.$invalid">
+                          <br /> <span ng-show="addPeopleForm.firstName.$error.required">First name is required.</span>
+                      </span>
+                      <input class="form-control" type="text" name="firstName" ng-model="addPeople.addPeopleForm.firstName" required> <br/>
+                    </span>
+
+                    <span ng-show="addPeople.isLoggedInAsOrganization == 'true'">
+                      <label for="inputLastName">Last Name:</label>
+                      <span style="color:red" ng-show="addPeopleForm.lastName.$invalid">
+                          <br /> <span ng-show="addPeopleForm.lastName.$error.required">Last name is required.</span>
+                      </span>
+                      <input class="form-control" type="text" name="lastName" ng-model="addPeople.addPeopleForm.lastName" required> <br/>
+                    </span>
+
+                    <span ng-show="addPeople.isLoggedInAsOrganization == 'true'">
+                      <label for="inputJobTitle">Job Title:</label>
+                      <span style="color:red" ng-show="addPeopleForm.jobTitle.$invalid">
+                          <br /> <span ng-show="addPeopleForm.jobTitle.$error.required">Job title is required.</span>
+                      </span>
+                      <select class="form-control" name="jobTitle" ng-model="addPeople.addPeopleForm.jobTitle" required>
+                          <option ng-repeat="job in addPeople.getAllJobs()" ng-value="{{ job.id }}" ng-selected="job.id == addPeople.addPeopleForm.jobTitle">{{ job.title }}</option>
+                      </select> <br/>
+                    </span>
+
+                    <label for="inputCountry">Country:</label>
+                    <select class="form-control" name="Country" ng-model="addPeople.addPeopleForm.country">
+                      <option ng-repeat="country in addPeople.getAllCountries()" ng-value="{{ country.id }}" ng-selected="addPeople.addPeopleForm.country == country.id">{{ country.name }}</option>
+                    </select> <br/>
+
+                    <span ng-show="addPeople.isLoggedInAsOrganization == 'true'">
+                      <label for="inputDepartment">Department:</label>
+                      <select class="form-control" name="Department" ng-model="addPeople.addPeopleForm.department">
+                          <option ng-repeat="department in addPeople.getAllDepartments()" ng-value="{{ department.id }}" ng-selected="addPeople.addPeopleForm.department == department.id">{{ department.name }}</option>
+                      </select> <br/>
+                    </span>
+
+                    <span ng-show="addPeople.isLoggedInAsOrganization == 'true'">
+                      <label for="inputBrand">Brand:</label>
+                      <select class="form-control" name="Brand" ng-model="addPeople.addPeopleForm.brand">
+                          <option ng-repeat="brand in addPeople.getAllBrands()" ng-value="{{ brand.id }}" ng-selected="addPeople.addPeopleForm.brand == brand.id">{{ brand.name }}</option>
+                      </select> <br/>
+                    </span>
+
+                    <span ng-show="addPeople.isLoggedInAsOrganization == 'true'">
+                        <label for="inputUsername">Username:</label>
+                        <input class="form-control" name="username" ng-model="addPeople.addPeopleForm.username"><br>
+                      </span>
+                    </span>
+
+                    <label for="inputLocation">Location:</label>
+                    <select class="form-control" name="Location" ng-model="addPeople.addPeopleForm.location">
+                        <option ng-repeat="location in addPeople.getAllLocations()" ng-value="{{ location.id }}" ng-selected="addPeople.addPeopleForm.location == location.id">{{ location.name }}</option>
+                    </select> <br/>
+
+                    <span ng-show="addPeople.isLoggedInAsOrganization == 'true'">
+                      <label for="inputWorkTime">Work Time:</label>
+                      <select class="form-control" name="WorkTime" ng-model="addPeople.addPeopleForm.workTime">
+                          <option ng-repeat="workTime in addPeople.getAllWorkTimes()" ng-value="{{ workTime.id }}" ng-selected="addPeople.addPeopleForm.workTime == workTime.id">{{ workTime.name }}</option>
+                      </select> <br/>
+                    </span>
+
+                    <span ng-show="addPeople.isLoggedInAsOrganization == 'true'">
+                      <label for="inputMentor">Mentor:</label>
+                      <select class="form-control" name="Mentor" ng-model="addPeople.addPeopleForm.mentor">
+                          <option ng-repeat="people in addPeople.getAllPeoples()" ng-value="{{ people.id }}" ng-selected="addPeople.addPeopleForm.mentor == people.id">{{ people.firstName + ' ' + people.lastName }}</option>
+                      </select> <br/>
+                    </span>
+
+                    <label for="inputHobbies">Hobbies:</label>
+                    <input class="form-control" name="hobbies" ng-model="addPeople.addPeopleForm.hobbies"><br>
+
+                    <label for="inputWorkPlace">Work Place:</label>
+                    <select class="form-control" name="WorkPlace" ng-model="addPeople.addPeopleForm.workPlace">
+                        <option ng-repeat="workPlace in addPeople.getWorkPlaces()" ng-value="{{ workPlace.id }}" ng-selected="addPeople.addPeopleForm.workPlace == workPlace.id">{{ workPlace.name }}</option>
+                    </select> <br/>
+
+                    <label for="inputMaritalStatus">Marital Status:</label>
+                    <select class="form-control" name="MaritalStatus" ng-model="addPeople.addPeopleForm.maritalStatus">
+                        <option ng-repeat="maritalStatus in addPeople.getMaritalStatus()" ng-value="{{ maritalStatus.id }}" ng-selected="addPeople.addPeopleForm.maritalStatus == maritalStatus.id">{{ maritalStatus.name }}</option>
+                    </select> <br/>
+
+                    <label for="inputBirthday">Birthday:</label> <br/>
+
+                    <label for="inputYear">Year:</label>
+                    <select class="birthday-field" name="Year" ng-model="addPeople.addPeopleForm.birthdayYear">
+                        <option ng-repeat="years in addPeople.getYears()" ng-value="{{ years }}" ng-selected="addPeople.addPeopleForm.birthdayYear == years">{{ years }}</option>
+                    </select>
+
+                    <label for="inputMonth">Month:</label>
+                    <select class="birthday-field" name="Month" ng-model="addPeople.addPeopleForm.birthdayMonth">
+                        <option ng-repeat="months in addPeople.getMonths()" ng-value="{{ months }}" ng-selected="addPeople.addPeopleForm.birthdayMonth == months">{{ months }}</option>
+                    </select>
+
+                    <label for="inputDay">Day:</label>
+                    <select class="birthday-field" name="Day" ng-model="addPeople.addPeopleForm.birthdayDay">
+                        <option ng-repeat="days in addPeople.getDays()" ng-value="{{ days }}" ng-selected="addPeople.addPeopleForm.birthdayDay == days">{{ days }}</option>
+                    </select> <br/>
+
+                    <span ng-show="addPeople.isLoggedInAsOrganization == 'true'">
+                      <label for="inputEmail">Email:</label>
+                      <span style="color:red" ng-show="addPeopleForm.email.$invalid">
+                          <br /><span ng-show="addPeopleForm.email.$error.required">Email is required.</span>
+                          <span ng-show="addPeopleForm.email.$error.email">Invalid email address.</span>
+                      </span>
+                      <input class="form-control" name="email" type="email" ng-model="addPeople.addPeopleForm.email" required><br>
+                    </span>
+
+                    <label for="inputTelephone">Telephone:</label>
+                    <input class="form-control" name="telephone" ng-model="addPeople.addPeopleForm.telephone"><br>
+
+                    <label for="inputEducation">Education:</label>
+                    <input class="form-control" name="education" ng-model="addPeople.addPeopleForm.education"><br>
+
+                    <label for="inputAddress">Address:</label>
+                    <input class="form-control" name="address" ng-model="addPeople.addPeopleForm.address"><br>
+
+                    <label for="inputGender">Gender:</label>
+                    <select class="form-control" name="Gender" ng-model="addPeople.addPeopleForm.gender">
+                        <option value="1" ng-selected="addPeople.addPeopleForm.gender == '1'">male</option>
+                        <option value="2" ng-selected="addPeople.addPeopleForm.gender == '2'">female</option>
+                    </select> <br/>
+
+                    <label for="inputPartnerName">Partner name:</label>
+                    <input class="form-control" name="PartnerName" ng-model="addPeople.addPeopleForm.partner"><br>
+
+                    <label for="inputPartnerBirthday">Partner Birthday:</label> <br/>
+
+                    <label for="inputYear">Year:</label>
+                    <select class="birthday-field" name="Year" ng-model="addPeople.addPeopleForm.birthdayPartnerYear">
+                        <option ng-repeat="years in addPeople.getYears()" ng-value="{{ years }}" ng-selected="addPeople.addPeopleForm.partnerBirthdayYear == years">{{ years }}</option>
+                    </select>
+
+                    <label for="inputMonth">Month:</label>
+                    <select class="birthday-field" name="Month" ng-model="addPeople.addPeopleForm.birthdayPartnerMonth">
+                        <option ng-repeat="months in addPeople.getMonths()" ng-value="{{ months }}" ng-selected="addPeople.addPeopleForm.partnerBirthdayMonth == months">{{ months }}</option>
+                    </select>
+
+                    <label for="inputDay">Day:</label>
+                    <select class="birthday-field" name="Day" ng-model="addPeople.addPeopleForm.birthdayPartnerDay">
+                        <option ng-repeat="days in addPeople.getDays()" ng-value="{{ days }}" ng-selected="addPeople.addPeopleForm.partnerBirthdayDay == days">{{ days }}</option>
+                    </select> <br/>
+
+                    <label for="inputMaidenName">Maiden name:</label>
+                    <input class="form-control" name="MaidenName" ng-model="addPeople.addPeopleForm.maidenName"><br>
+
+                    <label for="inputBloodGroup">Blood Group:</label>
+                    <select class="form-control" name="BloodGroup" ng-model="addPeople.addPeopleForm.bloodGroup">
+                        <option value="1" ng-selected="addPeople.addPeopleForm.bloodGroup == 'A'">A</option>
+                        <option value="2" ng-selected="addPeople.addPeopleForm.bloodGroup == 'B'">B</option>
+                        <option value="3" ng-selected="addPeople.addPeopleForm.bloodGroup == 'C'">C</option>
+                        <option value="4" ng-selected="addPeople.addPeopleForm.bloodGroup == 'D'">D</option>
+                    </select> <br/>
+
+                    <span ng-show="addPeople.isLoggedInAsOrganization == 'true'">
+                      <label for="inputJoinDate">Join Date:</label> <br/>
+
+                      <label for="inputYear">Year:</label>
+                      <select class="birthday-field" name="Year" ng-model="addPeople.addPeopleForm.joinYear">
+                          <option ng-value="{{ addPeople.currentYear }}" ng-selected="addPeople.addPeopleForm.joinYear == addPeople.currentYear">{{ addPeople.currentYear }}</option>
+                          <option ng-value="{{ addPeople.currentYear + 1 }}" ng-selected="addPeople.addPeopleForm.joinYear == (addPeople.currentYear + 1)">{{ addPeople.currentYear + 1 }}</option>
+                      </select>
+
+                      <label for="inputMonth">Month:</label>
+                      <select class="birthday-field" name="Month" ng-model="addPeople.addPeopleForm.joinMonth">
+                          <option ng-repeat="months in addPeople.getMonths()" ng-value="{{ months }}" ng-selected="addPeople.addPeopleForm.joinMonth == months">{{ months }}</option>
+                      </select>
+
+                      <label for="inputDay">Day:</label>
+                      <select class="birthday-field" name="Day" ng-model="addPeople.addPeopleForm.joinDay">
+                          <option ng-repeat="days in addPeople.getDays()" ng-value="{{ days }}" ng-selected="addPeople.addPeopleForm.joinDay == days">{{ days }}</option>
+                      </select> <br/>
+                    </span>
+
+                    <label for="inputAlternateEmail">Alternate Email:</label>
+                    <span style="color:red" ng-show="addPeopleForm.email.$invalid">
+                        <span ng-show="addPeopleForm.alternateEmail.$error.email">Invalid email address.</span>
+                    </span>
+                    <input class="form-control" name="alternateEmail" type="email" ng-model="addPeople.addPeopleForm.alternateEmail"><br>
+
+                    <span ng-show="addPeople.isLoggedInAsOrganization == 'true'">
+                      <label for="inputTeam">Team:</label>
+                      <select class="form-control" name="Team" ng-model="addPeople.addPeopleForm.team">
+                          <option ng-repeat="team in addPeople.getAllTeams()" ng-value="{{ team.id }}" ng-selected="addPeople.addPeopleForm.team == team.id">{{ team.name }}</option>
+                      </select> <br/>
+                    </span>
+
+                    <span ng-show="addPeople.isLoggedInAsOrganization == 'true'">
+                      <label for="inputCategory">Category:</label>
+                      <select class="form-control" name="Category" ng-model="addPeople.addPeopleForm.category">
+                          <option ng-repeat="category in addPeople.getAllCategories()" ng-value="{{ category.id }}" ng-selected="addPeople.addPeopleForm.category == category.id">{{ category.title }}</option>
+                      </select> <br/>
+                    </span>
+
+                    <label for="inputUsername">Photo:</label>
+                    <input class="form-control" type="file" file-model="addPeople.addPeopleForm.photo"/>
+
+                    <button class="btn btn-lg btn-primary" ng-click="addPeople.submitTheForm(true)" ng-disabled="addPeopleForm.$invalid">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

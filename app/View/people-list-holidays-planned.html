@@ -1,0 +1,49 @@
+<div id="wrapper">
+    <div id="page-wrapper" ng-controller="PeoplesController as peoples">
+    	<div class="search" ng-show="peoples.getAllPeoples().length != 0">
+			<div class="filter">
+		 		<label for="name">First Name:</label> 	
+		 		<input type="text" ng-model="search.firstName" class="form-control">
+		 	</div>
+
+		 	<div class="filter">
+		 		<label for="name">Last Name:</label> 	
+		 		<input type="text" ng-model="search.lastName" class="form-control">
+		 	</div>
+		</div>
+
+		<div id="page_content_inner"> 
+        	<div class="md-card-list-wrapper" id="mailbox">
+            	<div class="uk-width-large-8-10 uk-container-center">
+                	<div class="md-card-list">
+                    	<div class="md-card-list-header heading_list" ng-show="peoples.getAllPeoples().length != 0">People list</div>
+                    	<div ng-if="peoples.getAllPeoples().length == 0">
+				            <span ng-bind-html="peoples.showGrayBox('<span>There are no people.</span>', '<span>Go to \'Add people\' to add a people.</span>')"></span>
+				        </div>
+                    	<ul when-scrolled="peoples.getNextPeopleFromList()">
+                        	<li ng-repeat="people in peoples.getAllPeoples() | filter: search">
+                        		<a ng-href="#planned-holidays/{{people.id}}">
+                        			<span class="list-entry">
+		                            	<span class="md-card-list-item-date"> {{ people.departmentName }}</span>
+			                            <div class="md-card-list-item-avatar-wrapper">
+			                                <span class="md-card-list-item-avatar md-bg-light-green"> {{ people.firstName.charAt(0) + people.lastName.charAt(0) }} </span>
+			                            </div>
+			                            <div class="md-card-list-item-sender">
+			                                <span> {{ people.firstName + ' ' + people.lastName }} </span>
+			                            </div>
+			                            <div class="md-card-list-item-subject">
+			                                <div class="md-card-list-item-sender-small">
+			                                    <span> {{ people.firstName + ' ' + people.lastName }} </span>
+			                                </div>
+			                                <span> {{ people.jobTitle }} </span>
+			                            </div>
+			                        </span>
+		                        </a>
+                        	</li>
+                    	</ul>
+                	</div>
+            	</div>
+        	</div>
+     	</div>
+	</div>
+</div>

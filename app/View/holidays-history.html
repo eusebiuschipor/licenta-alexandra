@@ -1,0 +1,24 @@
+<div id="wrapper">
+	<div id="page-wrapper">
+		<table data-toggle="table" class="default-table center premium-1" ng-controller="HolidaysHistoryController as holidaysHistory" ng-init="holidaysHistory.checkPremium()">
+		    <thead>
+			    <tr>
+			        <th>Nr.</th>
+			        <th>Days</th>
+			        <th>Start date</th>
+			        <th>End date</th>
+			        <th>Status</th>
+			    </tr>
+		    </thead>
+		    <tbody>
+			    <tr ng-repeat="holiday in holidaysHistory.getHolidayHistoryList()">
+			    	<td class="column-1">{{ holiday.nr }}</td>
+			        <td class="column-2">{{ holiday.days }}</td>
+			        <td class="column-2">{{ holiday.startDate }}</td>
+			        <td class="column-2">{{ holiday.endDate }}</td>
+			        <td class="column-2">{{ holiday.status }}</td>
+			    </tr>
+		    </tbody>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,54 @@
+<!-- Delete job popup -->
+<div id="#openModal" class="modalDialog delete-job">
+    <div class="content">
+        <span title="Close" class="close" ng-controller="PopupMessageController as popupMessage" ng-click="popupMessage.hidePopupMessage();">X</span>
+        <h2></h2>
+        <p></p>
+        <button class="ok" ng-controller="JobsListController as jobs" ng-click="jobs.deleteJob();">OK</button>
+        <button class="cancel" ng-controller="PopupMessageController as popupMessage" ng-click="popupMessage.hidePopupMessage();">Cancel</button>
+    </div>
+</div>
+
+<div id="wrapper">
+	<div id="page-wrapper" ng-controller="JobsListController as jobsList">
+		<div class="search" ng-show="jobsList.getJobsList().length != 0">
+			<label for="searchJob">Search by job title:</label>
+			<input type="text" ng-model="search.title" class="form-control">
+		</div>
+		<div id="page_content_inner">
+			<div class="md-card-list-wrapper" id="mailbox">
+				<div class="uk-width-large-8-10 uk-container-center">
+					<div class="md-card-list">
+						<div class="md-card-list-header heading_list" ng-show="jobsList.getJobsList() != 0">Jobs list</div>
+						<div ng-if="jobsList.getJobsList().length == 0">
+							<span ng-bind-html="jobsList.showGrayBox('<span>There are no jobs.</span>', '<span>Go to \'Add job\' to add a job.</span>')"></span>
+						</div>
+						<ul>
+							<li ng-repeat="job in jobsList.getJobsList() | filter:search">
+									<span class="list-entry">
+										<div class="md-card-list-item-avatar-wrapper">
+											<span class="md-card-list-item-avatar md-bg-light-green"> {{ job.nr }} </span>
+										</div>
+										<div class="md-card-list-item-sender">
+											<span> {{ job.title }} </span>
+										</div>
+										<div class="md-card-list-item-subject">
+											<div class="md-card-list-item-sender-small">
+												<span></span>
+											</div>
+											<span></span>
+										</div>
+										<div class="md-card-list-item-subject action">
+	                    <span ng-click="jobsList.goJobDescription(job.id)">Description</span>
+	                    <span ng-click="jobsList.goEditJob(job.id)">Edit</span>
+	                    <span ng-click="jobsList.showDeleteJobPopup(job.id, job.title)">Delete</span>
+	                  </div>
+									</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

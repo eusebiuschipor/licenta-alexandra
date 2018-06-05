@@ -1,0 +1,18 @@
+<div id="wrapper">
+	<div id="page-wrapper">
+		<table data-toggle="table" class="default-table center" ng-controller="HolidaysController as holidays">
+		    <thead>
+			    <tr>
+			        <th>Holiday days per year</th>
+			        <th>Available holiday days</th>
+			    </tr>
+		    </thead>
+		    <tbody>
+			    <tr>
+			    	<td class="column-1">{{ holidays.getHolidayDaysPerYear(); }}</td>
+			        <td class="column-2">{{ holidays.getAvailableHolidayDays(); }}</td>
+			    </tr>
+		    </tbody>
+		</table>
+	</div>
+</div>

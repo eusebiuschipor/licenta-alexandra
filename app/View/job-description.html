@@ -1,0 +1,11 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid" ng-controller="JobDescriptionController as jobDescription" ng-init="jobDescription.getJobDescription();">
+			<h1> Title: {{ jobInformation.title }} </h1>
+			<h2> Department: {{ jobInformation.department }} </h2>
+			<a href="#/peoples/job/{{ jobInformation.id }}">
+				<button class="btn btn-lg btn-primary">Show people with this job</button>
+			</a>
+        </div>
+    </div>
+</div>

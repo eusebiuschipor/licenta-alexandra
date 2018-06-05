@@ -1,0 +1,58 @@
+<topnavigation></topnavigation>
+<div class="container" ng-controller="AddOrganizationController as addOrganization">
+  <form class="form-signin" name="loginFrm">
+		<h3 class="add-organization">Add your organization:</h3>
+		<div class="form-group row">
+      <label for="inputOrganization" class="col-sm-3 col-form-label">Organization:</label>
+      <div class="col-sm-9" ng-class="{ 'has-error': loginFrm.name.$dirty && loginFrm.name.$invalid }">
+					<input class="form-control has-feedback"
+								id="name"
+								name="name"
+			          required
+			          ng-minlength="4"
+			          ng-model="addOrganization.addOrganizationForm.name"
+			          tooltip="{{ loginFrm.name.$valid ? '' : 'Minimum 4 letters please.'}}"
+			          tooltip-trigger="focus"
+			          tooltip-placement="top">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-3 col-form-label">Email:</label>
+      <div class="col-sm-9" ng-class="{ 'has-error': loginFrm.email.$dirty && loginFrm.email.$invalid }">
+        <input type="email"
+							 name="email"
+							 class="form-control"
+							 id="inputEmail"
+							 placeholder="Email"
+							 ng-model="addOrganization.addOrganizationForm.email"
+							 tooltip="{{ loginFrm.email.$valid ? '' : 'Add a valid email address please.'}}"
+							 tooltip-trigger="focus"
+							 tooltip-placement="top">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPassword3" class="col-sm-3 col-form-label">Password:</label>
+      <div class="col-sm-9" ng-class="{ 'has-error': loginFrm.password.$dirty && loginFrm.password.$invalid }">
+        <input type="password"
+							 name="password"
+							 class="form-control"
+							 id="inputPassword"
+							 placeholder="Password"
+							 ng-model="addOrganization.addOrganizationForm.password"
+							 ng-minlength="4"
+							 tooltip="{{ loginFrm.password.$valid ? '' : 'Minimum 4 letters please.'}}"
+							 tooltip-trigger="focus"
+							 tooltip-placement="top">
+      </div>
+    </div>
+    <div class="form-group row">
+			  <span class="error-message">{{ addOrganization.errorMessage }}</span>
+        <button ng-click="addOrganization.submitTheForm()"
+								class="btn btn-lg btn-primary btn-block"
+								type="submit"
+								ng-disabled="loginFrm.$invalid">
+									Add Organization
+				</button>
+    </div>
+  </form>
+</div>

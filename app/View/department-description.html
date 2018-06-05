@@ -1,0 +1,11 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid" ng-controller="DepartmentDescriptionController as departmentDescription" ng-init="departmentDescription.getDepartmentDescription();">
+			<h1> Name: {{ departmentInformation.name }} </h1>
+			<h2> Description: {{ departmentInformation.description }} </h2>
+			<a href="#/peoples/department/{{ departmentInformation.id }}">
+				<button class="btn btn-lg btn-primary">Show people from this department</button>
+			</a>
+        </div>
+    </div>
+</div>

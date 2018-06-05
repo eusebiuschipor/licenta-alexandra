@@ -1,0 +1,54 @@
+<!-- Delete country popup -->
+<div id="#openModal" class="modalDialog delete-country">
+    <div class="content">
+        <span title="Close" class="close" ng-controller="PopupMessageController as popupMessage" ng-click="popupMessage.hidePopupMessage();">X</span>
+        <h2></h2>
+        <p></p>
+        <button class="ok" ng-controller="CountriesListController as countries" ng-click="countries.deleteCountry();">OK</button>
+        <button class="cancel" ng-controller="PopupMessageController as popupMessage" ng-click="popupMessage.hidePopupMessage();">Cancel</button>
+    </div>
+</div>
+
+<div id="wrapper">
+	<div id="page-wrapper" ng-controller="CountriesListController as countriesList">
+		<div class="search" ng-show="countriesList.getCountriesList().length != 0">
+			<label for="searchCountry">Search by country name:</label>
+			<input type="text" ng-model="search.name" class="form-control">
+		</div>
+
+	 	<div id="page_content_inner">
+			<div class="md-card-list-wrapper" id="mailbox">
+				<div class="uk-width-large-8-10 uk-container-center">
+					<div class="md-card-list">
+						<div class="md-card-list-header heading_list" ng-show="countriesList.getCountriesList().length != 0">Countries list</div>
+						<div ng-if="countriesList.getCountriesList().length == 0">
+							<span ng-bind-html="countriesList.showGrayBox('<span>There are no countries.</span>', '<span>Go to \'Add countries\' to add a country.</span>')"></span>
+						</div>
+						<ul>
+							<li ng-repeat="country in countriesList.getCountriesList() | filter:search">
+								<span class="list-entry">
+									<div class="md-card-list-item-avatar-wrapper">
+										<span class="md-card-list-item-avatar md-bg-light-green"> {{ country.nr }} </span>
+									</div>
+									<div class="md-card-list-item-sender">
+										<span> {{ country.name }} </span>
+									</div>
+									<div class="md-card-list-item-subject">
+										<div class="md-card-list-item-sender-small">
+											<!-- <span> {{ team.description }} </span> -->
+										</div>
+										<!-- <span> {{ team.managerFirstName + ' ' + team.managerLastName }} </span> -->
+									</div>
+									<div class="md-card-list-item-subject action">
+										<!-- <span ng-click="countriesList.goEditLocation(location.id)">Edit</span> -->
+										<span ng-click="countriesList.showDeleteCountryPopup(country.itemId, country.name)">Delete</span>
+									</div>
+								</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

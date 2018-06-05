@@ -1,0 +1,54 @@
+<!-- Delete people popup -->
+<div id="#openModal" class="modalDialog delete-people">
+  <div class="content">
+    <span title="Close" class="close" ng-controller="PopupMessageController as popupMessage" ng-click="popupMessage.hidePopupMessage();">X</span>
+    <h2></h2>
+    <p></p>
+    <button class="ok" ng-controller="PeoplesController as peoples" ng-click="peoples.deletePeople();">OK</button>
+    <button class="cancel" ng-controller="PopupMessageController as popupMessage" ng-click="popupMessage.hidePopupMessage();">Cancel</button>
+  </div>
+</div>
+
+<div id="wrapper">
+  <div id="page-wrapper" ng-controller="PeoplesController as peoples" ng-init="peoples.notifyRevertToBasicAccount()">
+    <div class="search" ng-show="peoples.getAllPeoples().length != 0">
+      <div ng-include src="peoples.getSearchPeopleTemplate();"></div>
+    </div>
+    <div id="page_content_inner">
+      <div class="md-card-list-wrapper" id="mailbox">
+        <div class="uk-width-large-8-10 uk-container-center">
+          <div class="md-card-list" ng-show="successRequestGetPeopleList">
+            <div class="md-card-list-header heading_list" ng-show="peoples.getAllPeoples().length != 0">People list</div>
+            <div ng-if="peoples.getAllPeoples().length == 0">
+              <span ng-bind-html="peoples.showGrayBox('<span>There are no people.</span>', '<span>Go to \'Add people\' to add a people.</span>')"></span>
+            </div>
+            <ul when-scrolled="peoples.getNextPeopleFromList()">
+              <li ng-repeat="people in peoples.getAllPeoples() | filter: search">
+                <span class="list-entry">
+                  <div class="md-card-list-item-avatar-wrapper">
+                    <span class="md-card-list-item-avatar md-bg-light-green"> {{ people.firstName.charAt(0) + people.lastName.charAt(0) }} </span>
+                  </div>
+                  <div class="md-card-list-item-sender">
+                    <span> {{ people.firstName + ' ' + people.lastName }} </span>
+                  </div>
+                  <div class="md-card-list-item-subject">
+                    <div class="md-card-list-item-sender-small">
+                      <span> {{ people.firstName + ' ' + people.lastName }} </span>
+                    </div>
+                    <span> {{ people.jobAvailability == 'available' ? people.jobTitle : peoples.strings.noJobAvailable }} </span>
+                  </div>
+                  <div class="md-card-list-item-subject action">
+                    <span ng-click="peoples.goPeopleDescription(people.id)">Description</span>
+                    <span ng-click="peoples.goEditPeople(people.id)" ng-show="peoples.isLoggedInAsOrganization == 'true'">Edit</span>
+                    <span ng-click="peoples.showDeletePeoplePopup(people.id, people.firstName, people.lastName)" ng-show="peoples.isLoggedInAsOrganization == 'true'">Delete</span>
+                  </div>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

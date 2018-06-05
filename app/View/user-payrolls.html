@@ -1,0 +1,35 @@
+<div id="wrapper">
+	<div id="page-wrapper">
+		<table data-toggle="table" class="default-table center" ng-controller="PayrollsListController as payrollsList">
+		    <thead>
+			    <tr>
+			        <th>Nr.</th>
+			        <th>Month</th>
+			        <th>Year</th>
+			        <th>Date created</th>
+			        <th>Worked days</th>
+			        <th>Total days</th>
+			        <th>Total payroll</th>
+			        <th>Actions</th>
+			    </tr>
+		    </thead>
+		    <tbody>
+			    <tr ng-repeat="payroll in payrollsList.getPayrollsList()">
+			    	<td class="column-1">{{ payroll.nr }}</td>
+			        <td class="column-2">{{ payroll.month }}</td>
+			        <td class="column-2">{{ payroll.year }}</td>
+			        <td class="column-2">{{ payroll.dateCreated }}</td>
+			        <td class="column-2">{{ payroll.workedDays }}</td>
+			        <td class="column-2">{{ payroll.totalDays }}</td>
+			        <td class="column-2">{{ payroll.totalPayroll }}</td>
+			        <td class="column-2"> 
+			        	<a href="#/edit-payroll/{{ payroll.id }}">Edit</a> 
+			        	<a class="pointer" ng-click="payrollsList.deletePayroll(payroll.id)">Delete</a>
+			        </td>
+			    </tr>
+		    </tbody>
+		</table>
+	</div>
+</div>
+
+

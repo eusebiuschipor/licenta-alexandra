@@ -1,0 +1,260 @@
+<popupmessage></popupmessage>
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0" ng-controller="NavigationController as navigation" ng-show="navigation.isLoggedIn();">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#{{ navigation.homeRoute(); }}">Loopevo</a>
+    </div>
+
+    <ul class="nav navbar-right top-nav logged">
+        <li class="dropdown">
+            <a class="dropdown-toggle hand-cursor" data-toggle="dropdown">
+                <i class="fa fa-user"></i> {{ navigation.getUserLoggedEmail() }} <b class="caret"></b>
+            </a>
+
+            <!-- User menu -->
+            <ul class="dropdown-menu" ng-show="navigation.isLoggedInAsOrganization() == 'false'">
+                <li>
+                    <a href="#/edit-people/{{ navigation.getPeopleId() }}"><i class="fa fa-fw fa-user"></i>Edit personal informations</a>
+                </li>
+                <li>
+                    <a href="#/change-password">Change password</a>
+                </li>
+                <li>
+                    <a href="#/settings">Settings</a>
+                </li>
+                <li>
+                    <a class="hand-cursor" ng-click="navigation.logOut();"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                </li>
+            </ul>
+            <!-- End user menu -->
+
+            <!-- Organization menu -->
+            <ul class="dropdown-menu" ng-show="navigation.isLoggedInAsOrganization() == 'true'">
+                <li>
+                    <a href="#/change-password">Change password</a>
+                </li>
+                <li>
+                    <a href="#/settings">Settings</a>
+                </li>
+                <li ng-show="navigation.isBasicAccount()">
+                    <a href="#/buy-premium">Upgrade to Premium Account</a>
+                </li>
+                <li>
+                    <a class="hand-cursor" ng-click="navigation.logOut();"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                </li>
+            </ul>
+            <!-- End organization menu -->
+
+        </li>
+    </ul>
+
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav in" id="side-menu">
+                <li class="dropdown" ng-click="navigation.activateItem();">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#/posts">News Feed</a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" ng-click="navigation.dropdownToggle('#menu-1')">People <span class="caret"></span></a>
+                    <ul class="nav nav-second-level" id="menu-1">
+                        <li ng-class="{active: navigation.isActive(0) == true}" ng-click="navigation.activateItem(0);">
+                            <a href="#/peoples">Show peoples</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(1) == true}" ng-click="navigation.activateItem(1);">
+                            <a href="#/add-people" ng-show="navigation.isLoggedInAsOrganization() === 'true'">Add people</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(36) == true}" ng-click="navigation.activateItem(36);" ng-show="navigation.isLoggedInAsOrganization() === 'false'">
+                            <a href="#/people-categories">Categories</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" ng-click="navigation.dropdownToggle('#menu-2')">Jobs <span class="caret"></span></a>
+                    <ul class="nav nav-second-level" id="menu-2">
+                        <li ng-class="{active: navigation.isActive(4) == true}" ng-click="navigation.activateItem(4);">
+                            <a href="#/jobs">Show jobs</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(5) == true}" ng-click="navigation.activateItem(5);">
+                            <a href="#/add-job" ng-show="navigation.isLoggedInAsOrganization() === 'true'">Add jobs</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" ng-click="navigation.dropdownToggle('#menu-3')">Departments <span class="caret"></span></a>
+                    <ul class="nav nav-second-level" id="menu-3">
+                        <li ng-class="{active: navigation.isActive(8) == true}" ng-click="navigation.activateItem(8);">
+                            <a href="#/departments">Show departments</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(9) == true}" ng-click="navigation.activateItem(9);">
+                            <a href="#/add-department" ng-show="navigation.isLoggedInAsOrganization() === 'true'">Add department</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" ng-click="navigation.dropdownToggle('#menu-4')">Brands <span class="caret"></span></a>
+                    <ul class="nav nav-second-level" id="menu-4">
+                        <li ng-class="{active: navigation.isActive(12) == true}" ng-click="navigation.activateItem(12);">
+                            <a href="#/brands">Show brands</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(13) == true}" ng-click="navigation.activateItem(13);">
+                            <a href="#/add-brand" ng-show="navigation.isLoggedInAsOrganization() === 'true'">Add brand</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" ng-click="navigation.dropdownToggle('#menu-5')">Teams<span class="caret"></span></a>
+                    <ul class="nav nav-second-level" id="menu-5">
+                        <li ng-class="{active: navigation.isActive(16) == true}" ng-click="navigation.activateItem(16);">
+                            <a href="#team/{{ navigation.getUserTeamId() }}" ng-show="navigation.isLoggedInAsUser() == true">My Team</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(17) == true}" ng-click="navigation.activateItem(17);">
+                            <a href="#/teams">Show teams</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(18) == true}" ng-click="navigation.activateItem(18);">
+                            <a href="#/add-team" ng-show="navigation.isLoggedInAsOrganization() === 'true'">Add team</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" ng-click="navigation.dropdownToggle('#menu-6')">Documents<span class="caret"></span></a>
+                    <ul class="nav nav-second-level" id="menu-6">
+                        <li ng-class="{active: navigation.isActive(21) == true}" ng-click="navigation.activateItem(21);">
+                            <a href="#/documents">Show documents</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(22) == true}" ng-click="navigation.activateItem(22);">
+                            <a href="#/add-document" ng-show="navigation.isLoggedInAsOrganization() === 'true'">Add document</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" ng-click="navigation.dropdownToggle('#menu-7')">Payrolls<span class="caret"></span></a>
+                    <ul class="nav nav-second-level" id="menu-7">
+                        <li ng-class="{active: navigation.isActive(25) == true}" ng-click="navigation.activateItem(25);">
+                            <a href="#/payrolls" ng-show="navigation.isLoggedInAsUser() == true">My payrolls</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(26) == true}" ng-click="navigation.activateItem(26);">
+                            <a href="#/add-payroll" ng-show="navigation.isLoggedInAsOrganization() === 'true'">Add payroll</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(27) == true}" ng-click="navigation.activateItem(27);">
+                            <a href="#/people-payrolls" ng-show="navigation.isLoggedInAsOrganization() === 'true'">People payrolls</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" ng-click="navigation.dropdownToggle('#menu-8')">Holiday<span class="caret"></span></a>
+                    <ul class="nav nav-second-level" id="menu-8">
+                        <li ng-class="{active: navigation.isActive(27) == true}" ng-click="navigation.activateItem(27);">
+                            <a href="#/planned-holidays" ng-show="navigation.isLoggedInAsUser() == true">Planned holidays</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(28) == true}" ng-click="navigation.activateItem(28);">
+                            <a href="#/holidays-history" ng-show="navigation.isLoggedInAsUser() == true">Holidays history</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(29) == true}" ng-click="navigation.activateItem(29);">
+                            <a href="#/review-user-holidays" ng-show="navigation.isLoggedInAsOrganization() === 'true'">Review user holidays</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(30) == true}" ng-click="navigation.activateItem(30);">
+                            <a href="#/add-holiday" ng-show="navigation.isLoggedInAsUser() == true">Add holiday</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(31) == true}" ng-click="navigation.activateItem(31);">
+                            <a href="#/holiday" ng-show="navigation.isLoggedInAsUser() == true">Holiday status</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(32) == true}" ng-click="navigation.activateItem(32);">
+                            <a href="#/people-list-holiday" ng-show="navigation.isLoggedInAsOrganization() === 'true'">Holiday statuses</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(33) == true}" ng-click="navigation.activateItem(33);">
+                            <a href="#/people-list-holidays-planned" ng-show="navigation.isLoggedInAsOrganization() === 'true'">Planned holidays</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(34) == true}" ng-click="navigation.activateItem(34);">
+                            <a href="#/people-list-holidays-history" ng-show="navigation.isLoggedInAsOrganization() === 'true'">Holidays history</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown" ng-show="navigation.isLoggedInAsOrganization() === 'true'">
+                    <a class="dropdown-toggle" data-toggle="dropdown" ng-click="navigation.dropdownToggle('#menu-9')">People category<span class="caret"></span></a>
+                    <ul class="nav nav-second-level" id="menu-9">
+                        <li ng-class="{active: navigation.isActive(35) == true}" ng-click="navigation.activateItem(35);">
+                            <a href="#/add-people-category">Add people category</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(36) == true}" ng-click="navigation.activateItem(36);">
+                            <a href="#/people-categories">People categories</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" ng-click="navigation.dropdownToggle('#menu-10')">Blog<span class="caret"></span></a>
+                    <ul class="nav nav-second-level" id="menu-10">
+                        <li ng-class="{active: navigation.isActive(37) == true}" ng-click="navigation.activateItem(37);">
+                            <a href="#/add-blog-article">Add blog article</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(38) == true}" ng-click="navigation.activateItem(38);">
+                            <a href="#/blogs">Show blogs</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" ng-click="navigation.dropdownToggle('#menu-11')">Food Menu<span class="caret"></span></a>
+                    <ul class="nav nav-second-level" id="menu-11">
+                        <li ng-show="navigation.isLoggedInAsOrganization() === 'true'" ng-class="{active: navigation.isActive(39) == true}" ng-click="navigation.activateItem(39);">
+                            <a href="#/add-food-menu">Add food menu</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(40) == true}" ng-click="navigation.activateItem(40);">
+                            <a href="#/today-food-menu">Today food menu</a>
+                        </li>
+                        <li ng-show="navigation.isLoggedInAsOrganization() === 'true'" ng-class="{active: navigation.isActive(41) == true}" ng-click="navigation.activateItem(41);">
+                            <a href="#/food-menu-currency">Food menu currency</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown" ng-show="navigation.isLoggedInAsOrganization() === 'true'">
+                    <a class="dropdown-toggle" data-toggle="dropdown" ng-click="navigation.dropdownToggle('#menu-12')">Location<span class="caret"></span></a>
+                    <ul class="nav nav-second-level" id="menu-12">
+                        <li ng-class="{active: navigation.isActive(42) == true}" ng-click="navigation.activateItem(42);">
+                            <a href="#/locations">Locations</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(43) == true}" ng-click="navigation.activateItem(43);">
+                            <a href="#/add-location">Add location</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown" ng-show="navigation.isLoggedInAsOrganization() === 'true'">
+                    <a class="dropdown-toggle" data-toggle="dropdown" ng-click="navigation.dropdownToggle('#menu-13')">Countries<span class="caret"></span></a>
+                    <ul class="nav nav-second-level" id="menu-13">
+                        <li ng-class="{active: navigation.isActive(44) == true}" ng-click="navigation.activateItem(44);">
+                            <a href="#/countries">Countries list</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(45) == true}" ng-click="navigation.activateItem(45);">
+                            <a href="#/add-country">Add country</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown" ng-show="navigation.isLoggedInAsOrganization() === 'true'">
+                    <a class="dropdown-toggle" data-toggle="dropdown" ng-click="navigation.dropdownToggle('#menu-14')">Work Time<span class="caret"></span></a>
+                    <ul class="nav nav-second-level" id="menu-14">
+                        <li ng-class="{active: navigation.isActive(46) == true}" ng-click="navigation.activateItem(46);">
+                            <a href="#/add-work-time">Add work time</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(47) == true}" ng-click="navigation.activateItem(47);">
+                            <a href="#/work-times">Work times list</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown" ng-show="navigation.isLoggedInAsOrganization() === 'true'">
+                    <a class="dropdown-toggle" data-toggle="dropdown" ng-click="navigation.dropdownToggle('#menu-15')">Work Place<span class="caret"></span></a>
+                    <ul class="nav nav-second-level" id="menu-15">
+                        <li ng-class="{active: navigation.isActive(47) == true}" ng-click="navigation.activateItem(47);">
+                            <a href="#/add-work-place">Add work place</a>
+                        </li>
+                        <li ng-class="{active: navigation.isActive(48) == true}" ng-click="navigation.activateItem(48);">
+                            <a href="#/work-places">Work places</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

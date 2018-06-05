@@ -1,0 +1,56 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            
+            <h2 class="form-signin-heading">Add holiday</h2>
+
+            <div ng-controller="AddHolidayController as addHoliday">
+                <form class="form-add-people" name="addHolidayForm">
+                    <label for="inputStartDate">Start Date:</label> <br/>
+
+                    <label for="inputYear">Year:</label>
+                    <select class="birthday-field" name="Year" ng-model="addHoliday.addHolidayForm.startYear">
+                        <option ng-value="{{ addHoliday.getCurrentYear() }}">{{ addHoliday.getCurrentYear() }}</option>
+                        <option ng-value="{{ addHoliday.getCurrentYear() + 1 }}">{{ addHoliday.getCurrentYear() + 1 }}</option>
+                    </select> 
+
+                    <label for="inputMonth">Month:</label>
+                    <select class="birthday-field" name="Month" ng-model="addHoliday.addHolidayForm.startMonth">
+                        <option ng-repeat="months in addHoliday.getMonths()" ng-value="{{ months }}">{{ months }}</option>
+                    </select> 
+
+                    <label for="inputDay">Day:</label>
+                    <select class="birthday-field" name="Day" ng-model="addHoliday.addHolidayForm.startDay">
+                        <option ng-repeat="days in addHoliday.getDays()" ng-value="{{ days }}">{{ days }}</option>
+                    </select> <br/>
+
+                    <label for="inputEndDate">End Date:</label> <br/>
+
+                    <label for="inputYear">Year:</label>
+                    <select class="birthday-field" name="Year" ng-model="addHoliday.addHolidayForm.endYear">
+                        <option ng-value="{{ addHoliday.getCurrentYear() }}">{{ addHoliday.getCurrentYear() }}</option>
+                        <option ng-value="{{ addHoliday.getCurrentYear() + 1 }}">{{ addHoliday.getCurrentYear() + 1 }}</option>
+                    </select> 
+
+                    <label for="inputMonth">Month:</label>
+                    <select class="birthday-field" name="Month" ng-model="addHoliday.addHolidayForm.endMonth">
+                        <option ng-repeat="months in addHoliday.getMonths()" ng-value="{{ months }}">{{ months }}</option>
+                    </select> 
+
+                    <label for="inputDay">Day:</label>
+                    <select class="birthday-field" name="Day" ng-model="addHoliday.addHolidayForm.endDay">
+                        <option ng-repeat="days in addHoliday.getDays()" ng-value="{{ days }}">{{ days }}</option>
+                    </select> <br/>
+
+                    <label for="inputDays">Days:</label>
+                    <span style="color:red" ng-show="addHolidayForm.days.$invalid">
+                        You can take just {{ addHoliday.availableHolidayDays }} days of vacation!
+                    </span>
+                    <input type="number" class="form-control" name="days" ng-model="addHoliday.addHolidayForm.days" min="0" max="{{ addHoliday.availableHolidayDays }}"><br>
+
+                    <button class="btn btn-lg btn-primary" ng-click="addHoliday.submitTheForm()" ng-disabled="addHolidayForm.$invalid">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

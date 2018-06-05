@@ -1,0 +1,25 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid" id="teams">
+            
+            <h2 class="form-signin-heading">Add team</h2>
+
+            <div ng-controller="AddTeamController as addTeam">
+                <form class="form-add-people">
+                    <label for="inputTitle">Title:</label>          
+                    <input class="form-control" type="text" name="Title" ng-model="addTeam.addTeamForm.name"> <br/>
+
+                    <label for="inputDescription">Description:</label>  
+                    <input class="form-control" type="text" name="Description" ng-model="addTeam.addTeamForm.description"> <br/>
+
+                    <label for="inputManager">Manager:</label>      
+                    <select class="form-control" name="Manager" ng-model="addTeam.addTeamForm.manager">
+                        <option ng-repeat="people in addTeam.getAllPeoples()" ng-value="{{ people.id }}">{{ people.firstName + ' ' + people.lastName }}</option>
+                    </select> <br/> 
+
+                    <button class="btn btn-lg btn-primary" ng-click="addTeam.submitTheForm()">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

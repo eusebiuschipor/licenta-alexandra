@@ -1,0 +1,31 @@
+<div id="wrapper">
+	<div id="page-wrapper" ng-controller="PayrollsListController as payrollsList">
+		<div ng-if="payrollsList.getPayrollsList().length === 0">
+			<span ng-bind-html="payrollsList.showGrayBox('<span>You don\'t have payrolls yet.</span>')"></span>
+		</div>
+		<table data-toggle="table" class="default-table center" ng-show="payrollsList.getPayrollsList().length !== 0">
+		    <thead>
+			    <tr>
+			        <th>Nr.</th>
+			        <th>Month</th>
+			        <th>Year</th>
+			        <th>Date created</th>
+			        <th>Worked days</th>
+			        <th>Total days</th>
+			        <th>Total payroll</th>
+			    </tr>
+		    </thead>
+		    <tbody>
+			    <tr ng-repeat="payroll in payrollsList.getPayrollsList()">
+			    	<td class="column-1">{{ payroll.nr }}</td>
+			        <td class="column-2">{{ payroll.month }}</td>
+			        <td class="column-2">{{ payroll.year }}</td>
+			        <td class="column-2">{{ payroll.dateCreated }}</td>
+			        <td class="column-2">{{ payroll.workedDays }}</td>
+			        <td class="column-2">{{ payroll.totalDays }}</td>
+			        <td class="column-2">{{ payroll.totalPayroll }}</td>
+			    </tr>
+		    </tbody>
+		</table>
+	</div>
+</div>

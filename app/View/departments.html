@@ -1,0 +1,56 @@
+<!-- Delete department popup -->
+<div id="#openModal" class="modalDialog delete-department">
+	<div class="content">
+		<span title="Close" class="close" ng-controller="PopupMessageController as popupMessage" ng-click="popupMessage.hidePopupMessage();">X</span>
+		<h2></h2>
+		<p></p>
+		<button class="ok" ng-controller="DepartmentsListController as departments" ng-click="departments.deleteDepartment();">OK</button>
+		<button class="cancel" ng-controller="PopupMessageController as popupMessage" ng-click="popupMessage.hidePopupMessage();">Cancel</button>
+	</div>
+</div>
+
+<div id="wrapper">
+	<div id="page-wrapper" ng-controller="DepartmentsListController as departmentsList">
+		<div class="search" ng-show="departmentsList.getDepartmentsList().length != 0">
+			<label for="searchJob">Search by department name:</label>
+			<input type="text" ng-model="search.name" class="form-control">
+		</div>
+
+		<div id="page_content_inner">
+			<div class="md-card-list-wrapper" id="mailbox">
+				<div class="uk-width-large-8-10 uk-container-center">
+					<div class="md-card-list" ng-show="successGetDepartmentsList">
+						<div class="md-card-list-header heading_list" ng-if="departmentsList.getDepartmentsList().length != 0">Departments list</div>
+						<span ng-show="departmentsList.getDepartmentsList().length == 0" ng-bind-html="departmentsList.showGrayBox('<span>There are no departments.</span>', '<span>Go to \'Add department\' to add a department.</span>')"></span>
+						<ul>
+							<li ng-repeat="department in departmentsList.getDepartmentsList() | filter:search">
+								<!-- <a ng-href="#department-description/{{department.id}}"> -->
+									<span class="list-entry">
+										<span class="md-card-list-item-date"> </span>
+										<div class="md-card-list-item-avatar-wrapper">
+											<span class="md-card-list-item-avatar md-bg-light-green"> {{ department.nr }} </span>
+										</div>
+										<div class="md-card-list-item-sender">
+											<span> {{ department.name }} </span>
+										</div>
+										<div class="md-card-list-item-subject">
+											<div class="md-card-list-item-sender-small">
+												<span></span>
+											</div>
+											<span></span>
+										</div>
+										<div class="md-card-list-item-subject action">
+	                    <span ng-click="departmentsList.goDepartmentDescription(department.id)">Description</span>
+	                    <span ng-click="departmentsList.goEditDepartment(department.id)">Edit</span>
+	                    <span ng-click="departmentsList.showDeleteDepartmentPopup(department.id, department.name)">Delete</span>
+	                  </div>
+									</span>
+								<!-- </a> -->
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

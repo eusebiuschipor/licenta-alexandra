@@ -1,0 +1,22 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid">
+			<div ng-controller="PostDescription as postDescription" ng-init="postDescription.getPostInformation();">
+				<div class="col-lg-12">
+					<div class="post-description-title">
+						<strong> {{ postInformation.firstName + ' ' + postInformation.lastName }} </strong> posted on <strong> {{ postInformation.date }} </strong>
+					</div>
+					<span ng-if="haveAttachement">
+						Attachment: <a href="{{ postImageSrc + postInformation.file }}" download="{{ postInformation.file }}"> <strong> {{ postInformation.file }} </strong> </a>
+					</span>
+					<span ng-if="haveImage">
+						<img ng-src="{{ postImageSrc + postInformation.file }}" class="post-description-image" class="post-description-image" />
+					</span>
+					<div class="{{ contentClass }}">
+						{{ postInformation.content }}
+					</p>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<form class="form-signin" name="loginFrm">
+  <h3 class="add-organization">Login as {{ type }}</h3>
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-3 col-form-label">Email:</label>
+    <div class="col-sm-9" ng-class="{ 'has-error': loginFrm.email.$dirty && loginFrm.email.$invalid }">
+      <input type="email"
+             name="email"
+             class="form-control"
+             id="inputEmail"
+             placeholder="Email"
+             ng-model="loginForm.email"
+             tooltip="{{ loginFrm.email.$valid ? '' : 'Your email address please.'}}"
+             tooltip-trigger="focus"
+             tooltip-placement="top"
+             required>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-3 col-form-label">Password:</label>
+    <div class="col-sm-9" ng-class="{ 'has-error': loginFrm.password.$dirty && loginFrm.password.$invalid }">
+      <input type="password"
+             name="password"
+             class="form-control"
+             id="inputPassword"
+             placeholder="Password"
+             ng-model="loginForm.password"
+             ng-minlength="4"
+             tooltip="{{ loginFrm.password.$valid ? '' : 'Your password please. It should have minimum 4 letters.'}}"
+             tooltip-trigger="focus"
+             tooltip-placement="top"
+             required>
+    </div>
+  </div>
+  <div class="form-group row">
+      <span class="error-message" ng-show="login.invalidLogin();">Invalid username or password. Please try again.</span>
+      <button ng-click="login.login();"
+              class="btn btn-lg btn-primary btn-block"
+              type="submit"
+              ng-disabled="loginFrm.$invalid">
+                Login
+      </button>
+  </div>
+</form>

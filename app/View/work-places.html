@@ -1,0 +1,54 @@
+<!-- Delete work place popup -->
+<div id="#openModal" class="modalDialog delete-work-place">
+    <div class="content">
+        <span title="Close" class="close" ng-controller="PopupMessageController as popupMessage" ng-click="popupMessage.hidePopupMessage();">X</span>
+        <h2></h2>
+        <p></p>
+        <button class="ok" ng-controller="WorkPlacesListController as workPlaces" ng-click="workPlaces.deleteWorkPlace();">OK</button>
+        <button class="cancel" ng-controller="PopupMessageController as popupMessage" ng-click="popupMessage.hidePopupMessage();">Cancel</button>
+    </div>
+</div>
+
+<div id="wrapper">
+	<div id="page-wrapper" ng-controller="WorkPlacesListController as workPlacesList">
+		<div class="search" ng-show="workPlaceList.getWorkPlacesList().length != 0">
+			<label for="searchLocation">Search by work place name:</label>
+			<input type="text" ng-model="search.name" class="form-control">
+		</div>
+
+	 	<div id="page_content_inner">
+			<div class="md-card-list-wrapper" id="mailbox">
+				<div class="uk-width-large-8-10 uk-container-center">
+					<div class="md-card-list">
+						<div class="md-card-list-header heading_list" ng-show="WorkPlaceList.getWorkPlacesList().length != 0">Work Places list</div>
+						<div ng-if="workPlacesList.getWorkPlacesList().length == 0">
+							<span ng-bind-html="workPlacesList.showGrayBox('<span>There are no work places.</span>', '<span>Go to \'Add work place\' to add a work place.</span>')"></span>
+						</div>
+						<ul>
+							<li ng-repeat="workPlace in workPlacesList.getWorkPlacesList() | filter:search">
+								<span class="list-entry">
+									<div class="md-card-list-item-avatar-wrapper">
+										<span class="md-card-list-item-avatar md-bg-light-green"> {{ workPlace.nr }} </span>
+									</div>
+									<div class="md-card-list-item-sender">
+										<span> {{ workPlace.name }} </span>
+									</div>
+									<div class="md-card-list-item-subject">
+										<div class="md-card-list-item-sender-small">
+											<!-- <span> {{ team.description }} </span> -->
+										</div>
+										<!-- <span> {{ team.managerFirstName + ' ' + team.managerLastName }} </span> -->
+									</div>
+									<div class="md-card-list-item-subject action">
+										<span ng-click="workPlacesList.goEditWorkPlace(workPlace.id)">Edit</span>
+										<span ng-click="workPlacesList.showDeleteWorkPlacePopup(workPlace.id, workPlace.name)">Delete</span>
+									</div>
+								</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

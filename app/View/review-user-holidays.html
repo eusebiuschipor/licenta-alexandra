@@ -1,0 +1,35 @@
+<div id="wrapper">
+	<div id="page-wrapper" ng-controller="ReviewUserHolidaysController as holidays">
+		<div ng-if="holidays.getUnseenHolidays().length == 0">
+            <span ng-bind-html="holidays.showGrayBox('<span>There are no holidays for review.</span>')"></span>
+        </div>
+
+		<table data-toggle="table" class="default-table center" ng-show="holidays.getUnseenHolidays().length != 0">
+		    <thead>
+			    <tr>
+			        <th>Nr.</th>
+			        <th>First Name</th>
+			        <th>Last Name</th>
+			        <th>Days</th>
+			        <th>Start date</th>
+			        <th>End date</th>
+			        <th>Action</th>
+			    </tr>
+		    </thead>
+		    <tbody>
+			    <tr ng-repeat="holiday in holidays.getUnseenHolidays()">
+			    	<td class="column-1">{{ holiday.nr }}</td>
+			    	<td class="column-1">{{ holiday.peopleFirstName }}</td>
+			    	<td class="column-1">{{ holiday.peopleLastName }}</td>
+			        <td class="column-2">{{ holiday.days }}</td>
+			        <td class="column-2">{{ holiday.startDate }}</td>
+			        <td class="column-2">{{ holiday.endDate }}</td>
+			        <td class="column-2">
+			        	<a class="pointer" ng-click="holidays.acceptHoliday(holiday.id)">Accept</a>
+			        	<a class="pointer" ng-click="holidays.rejectHoliday(holiday.id)">Reject</a>
+			        </td>
+			    </tr>
+		    </tbody>
+		</table>
+	</div>
+</div>

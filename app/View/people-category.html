@@ -1,0 +1,67 @@
+<div id="wrapper">
+  <div id="page-wrapper" ng-controller="PeopleCategoryInformationController as peoples">
+    <div class="search">
+      <div class="filter">
+        <label for="country">Country:</label>
+        <select class="form-control" name="Country" ng-model="search.country">
+          <option value="">All</option>
+          <option ng-repeat="country in peoples.getAllCountries()" ng-value="{{ country.id }}">{{ country.name }}</option>
+        </select>
+      </div>
+
+      <div class="filter">
+        <label for="department">Department:</label>
+        <select class="form-control" name="Department" ng-model="search.department">
+          <option value="">All</option>
+          <option ng-repeat="department in peoples.getAllDepartments()" ng-value="{{ department.id }}">{{ department.name }}</option>
+        </select>
+      </div>
+
+      <div class="filter">
+        <label for="country">Brand:</label>
+        <select class="form-control" name="Brand" ng-model="search.brand">
+          <option value="">All</option>
+          <option ng-repeat="brand in peoples.getAllBrands()" ng-value="{{ brand.id }}">{{ brand.name }}</option>
+        </select>
+      </div>
+
+      <div class="filter">
+        <label for="name">First Name:</label>
+        <input type="text" ng-model="search.firstName" class="form-control">
+      </div>
+
+      <div class="filter">
+        <label for="name">Last Name:</label>
+        <input type="text" ng-model="search.lastName" class="form-control"></div>
+      </div>
+
+    	<div id="page_content_inner">
+        <div class="md-card-list-wrapper" id="mailbox">
+          <div class="uk-width-large-8-10 uk-container-center">
+            <div class="md-card-list">
+              <div class="md-card-list-header heading_list">People list</div>
+              <ul when-scrolled="peoples.getNextPeopleFromList()">
+                <li ng-repeat="people in peoples.getPeoples()">
+                  <a ng-href="#people-description/{{ people.id }}">
+                    <span class="md-card-list-item-date"> {{ people.departmentName }}</span>
+                    <div class="md-card-list-item-avatar-wrapper">
+                      <span class="md-card-list-item-avatar md-bg-light-green"> {{ people.firstName.charAt(0) + people.lastName.charAt(0) }} </span>
+                    </div>
+                    <div class="md-card-list-item-sender">
+                      <span> {{ people.firstName + ' ' + people.lastName }} </span>
+                    </div>
+                    <div class="md-card-list-item-subject">
+                      <div class="md-card-list-item-sender-small">
+                        <span> {{ people.firstName + ' ' + people.lastName }} </span>
+                      </div>
+                      <span> {{ people.jobTitle }} </span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

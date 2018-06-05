@@ -1,0 +1,22 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid" id="peoples">
+            
+            <h2 class="form-signin-heading">Edit job</h2>
+
+            <div ng-controller="AddJobController as addJob" ng-init="addJob.getJobInformation()">
+                <form class="form-add-people">
+                    <label for="inputTitle">Title:</label> 			
+                    <input class="form-control"  type="text" name="Title" ng-model="addJob.addJobForm.title"> <br/>
+
+                    <label for="inputDepartment">Department:</label>    
+                    <select class="form-control"  name="Department" ng-model="addJob.addJobForm.department">
+                        <option ng-repeat="department in addJob.getDepartmentsList()" ng-value="{{ department.id }}" ng-selected="addJob.addJobForm.department == department.id">{{ department.name }}</option>
+                    </select> <br/> 
+
+                    <button class="btn btn-lg btn-primary" ng-click="addJob.submitTheForm()">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

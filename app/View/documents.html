@@ -1,0 +1,58 @@
+<!-- Delete document popup -->
+<div id="#openModal" class="modalDialog delete-document">
+    <div class="content">
+        <span title="Close" class="close" ng-controller="PopupMessageController as popupMessage" ng-click="popupMessage.hidePopupMessage();">X</span>
+        <h2></h2>
+        <p></p>
+        <button class="ok" ng-controller="DocumentsListController as documents" ng-click="documents.deleteDocument();">OK</button>
+        <button class="cancel" ng-controller="PopupMessageController as popupMessage" ng-click="popupMessage.hidePopupMessage();">Cancel</button>
+    </div>
+</div>
+
+<div id="wrapper">
+	<div id="page-wrapper" ng-controller="DocumentsListController as documentsList">
+		<div class="search" ng-show="documentsList.getDocumentsList().length != 0">
+			<label for="searchDocument">Search by document title:</label>
+			<input type="text" ng-model="search.title" class="form-control">
+		</div>
+
+		<div id="page_content_inner">
+			<div class="md-card-list-wrapper" id="mailbox">
+				<div class="uk-width-large-8-10 uk-container-center">
+					<div class="md-card-list">
+						<div class="md-card-list-header heading_list" ng-show="documentsList.getDocumentsList().length != 0">Documents list</div>
+						<div ng-if="documentsList.getDocumentsList().length == 0">
+							<span ng-bind-html="documentsList.showGrayBox('<span>There are no documents.</span>', '<span>Go to \'Add document\' to add a document.</span>')"></span>
+						</div>
+						<ul>
+							<li ng-repeat="document in documentsList.getDocumentsList() | filter:search">
+								<!-- <a ng-href="#document/{{document.id}}"> -->
+									<span class="list-entry">
+										<span class="md-card-list-item-date"> </span>
+										<div class="md-card-list-item-avatar-wrapper">
+											<span class="md-card-list-item-avatar md-bg-light-green"> {{ document.nr }} </span>
+										</div>
+										<div class="md-card-list-item-sender">
+											<span> {{ document.title }} </span>
+										</div>
+										<div class="md-card-list-item-subject">
+											<div class="md-card-list-item-sender-small">
+												<span></span>
+											</div>
+											<span></span>
+										</div>
+										<div class="md-card-list-item-subject action">
+	                    <span ng-click="documentsList.goDocumentDescription(document.id)">Description</span>
+	                    <span ng-click="documentsList.goEditDocument(document.id)">Edit</span>
+	                    <span ng-click="documentsList.showDeleteDocumentPopup(document.id, document.title)">Delete</span>
+	                  </div>
+									</span>
+								<!-- </a> -->
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

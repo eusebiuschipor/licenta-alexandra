@@ -1,0 +1,17 @@
+<div id="wrapper">
+    <div id="page-wrapper">
+        <div class="container-fluid" id="locations">
+
+            <h2 class="form-signin-heading">Edit location</h2>
+
+            <div ng-controller="AddLocationController as addLocation" ng-init="addLocation.getLocationInformation()">
+                <form class="form-add-people">
+                    <label for="inputTitle">Name:</label>
+                    <input class="form-control" type="text" name="Title" ng-model="addLocation.addLocationForm.name"> <br/>
+
+                    <button class="btn btn-lg btn-primary" ng-click="addLocation.submitTheForm()">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
